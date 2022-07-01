@@ -1,0 +1,71 @@
+﻿@*Importing model here*@
+@model MyMVCApplication.Models.Student
+@{
+	ViewBag.Title = "Edit";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*//My scripts*@
+<script src="~/Scripts/myScript.js"></script>
+@*//Style CSS*@
+<link href="~/Content/bodyStyle.css" rel="stylesheet" />
+
+<h4>Passing data between Controller and View</h4>
+<h4> @ViewBag.example</h4>
+
+
+	
+<div class="row">
+	@using (Html.BeginForm("LinqIndex", "LinqTraining", FormMethod.Post))
+	{
+		<div class="bodyStyle col-md-3">
+			<h5>From Html to Controller</h5>
+			<h5>Using Traditionnal method</h5>
+			<label for="inputName">Name</label>
+			<input class="form-control"
+				   id="inputName"
+				   name="inputName"
+				   value="" />
+
+			<button class="btn btn-success" type="submit" style="margin-top:5px; align-content:start">Valider</button>
+		</div>
+
+		<div class="bodyStyle col-md-3">
+			<h5>From Controller to HTML</h5>
+			<h5>Using Model inside controller returned View argument</h5>
+			<label for="inputSurname">Surname</label>
+			<input class="form-control"
+				   id="inputSurname"
+				   name="inputSurname"
+				   value="@Model.StudentName" />
+		</div>
+	}
+
+	@using (Html.BeginForm("Accepter", "LinqTraining", FormMethod.Post)) 
+	{ 
+		<div class="bodyStyle col-md-3">
+			<h5>From Html to Controller</h5>
+			<h5>Using Model inside controller method argument</h5>
+			<label for="inputAge">Age</label>
+			@Html.TextBoxFor(student => student.Age, htmlAttributes:new
+			   { 
+				type="number", 
+				@onchange="getText(this)",
+				 @class="form-control"
+				
+			   })
+			<input class="form-control"
+				onblur="getBlur(this)"
+				   id="inputAge"
+				   name="inputAge"
+				   value="" />
+			<button class="btn btn-success" type="submit" style="margin-top:5px">Accepter</button>
+		</div>
+	}  
+	
+
+</div>
+	
+
+<hr />
+<h4>LINQ TRAINING</h4>
+

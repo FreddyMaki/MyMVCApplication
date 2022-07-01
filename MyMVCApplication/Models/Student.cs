@@ -18,5 +18,6 @@ namespace MyMVCApplication.Models
         public int Age { get; set; }
         public bool isNewlyEnrolled { get; set; }
         public string Password { get; set; }
+
     }
 }
